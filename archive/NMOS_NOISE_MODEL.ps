@@ -1,10 +1,10 @@
 %!PS-Adobe-3.0 EPSF-3.0
-%%Title: res_noise_model.ps
-%%Creator: XCircuit v0.0 rev-2138336994
-%%CreationDate: Thu May 26 23:44:01 2022
+%%Title: NMOS_NOISE_MODEL.ps
+%%Creator: XCircuit v0.0 rev-1696542434
+%%CreationDate: Thu May 26 23:55:05 2022
 %%Pages: 1
-%%BoundingBox: 68 68 460 256
-%%DocumentNeededResources: font Times-Roman Courier 
+%%BoundingBox: 68 68 433 184
+%%DocumentNeededResources: font Helvetica Times-Roman Courier Symbol 
 %%EndComments
 %%BeginProlog
 %
@@ -184,27 +184,23 @@
 
 %%BeginSetup
 
-/analog::resistor {
-begingate
-1 1.000 0 64 0 36 2 polygon
-1 1.000 0 -64 0 -36 2 polygon
-1 1.000 0 -36 14 -30 -14 -18 14 -6 -14 6 14 18 -14 30 0 36 8 polygon
-1.000 0.000 0.000 scb
-(r.1) {/Times-Roman cf} 2 9 0.000 1.000 0 64 pinlabel
-(r.2) {/Times-Roman cf} 2 13 0.000 1.000 0 -64 pinlabel
-0.180 0.545 0.341 scb
-(spice:R%i %pr.1 %pr.2 1.0K) {/Times-Roman cf} 2 0 0.000 1.000 -208 -160 
-infolabel
-(sim:r %pr.1 %pr.2) {/Times-Roman cf} 2 0 0.000 1.000 -208 -208 infolabel
-endgate
-} def
-
 /analog::source {
 % hidden
 begingate
 1 1.000 0 0 32 0.000 360.000 xcarc
 1 1.000 0 32 0 64 2 polygon
 1 1.000 0 -32 0 -64 2 polygon
+endgate
+} def
+
+/analog::vsource {
+begingate
+1.000 0.000 0 0 analog::source
+(+) {/Symbol cf} 2 5 0.000 1.000 0 14 label
+(-) {/Symbol cf} 2 5 0.000 1.000 0 -22 label
+1.000 0.000 0.000 scb
+(v.p) {/Times-Roman cf} 2 9 0.000 1.000 0 64 pinlabel
+(v.m) {/Times-Roman cf} 2 13 0.000 1.000 0 -64 pinlabel
 endgate
 } def
 
@@ -231,15 +227,18 @@ begingate
 endgate
 } def
 
-/analog::gnd {
-% trivial
+/analog::resistor {
 begingate
-1 1.000 0 0 0 -32 2 polygon
-1 1.000 -32 -32 32 -32 2 polygon
-1 1.000 -18 -46 18 -46 2 polygon
-1 1.000 -4 -60 4 -60 2 polygon
-0.933 0.604 0.000 scb
-(GND) {/Times-Roman cf} 2 1 0.000 1.000 0 0 pinglobal
+1 1.000 0 64 0 36 2 polygon
+1 1.000 0 -64 0 -36 2 polygon
+1 1.000 0 -36 14 -30 -14 -18 14 -6 -14 6 14 18 -14 30 0 36 8 polygon
+1.000 0.000 0.000 scb
+(r.1) {/Times-Roman cf} 2 9 0.000 1.000 0 64 pinlabel
+(r.2) {/Times-Roman cf} 2 13 0.000 1.000 0 -64 pinlabel
+0.180 0.545 0.341 scb
+(spice:R%i %pr.1 %pr.2 1.0K) {/Times-Roman cf} 2 0 0.000 1.000 -208 -160 
+infolabel
+(sim:r %pr.1 %pr.2) {/Times-Roman cf} 2 0 0.000 1.000 -208 -208 infolabel
 endgate
 } def
 
@@ -254,59 +253,66 @@ begingate
 endgate
 } def
 
-/analog::acsource {
-begingate
-1.000 0.000 0 0 analog::source
-1 0.800 0 -48 0 48 -16 0 16 0 spline
-1.000 0.000 0.000 scb
-(s.p) {/Times-Roman cf} 2 9 0.000 1.000 0 64 pinlabel
-(s.m) {/Times-Roman cf} 2 13 0.000 1.000 0 -64 pinlabel
-endgate
-} def
-
-/generic::dot {
-% trivial
-begingate
-248 1.000 0 0 6 0.000 360.000 xcarc
-1.000 0.000 0.000 scb
-(x) {/Times-Roman cf} 2 29 -0.000 1.000 0 0 pinlabel
-endgate
-} def
-
 
 %%EndSetup
 
-%%Page: /home/oyxl/Github/xcircuit/archive/res_noise_model 1
+%%Page: /home/oyxl/Github/xcircuit/archive/NMOS_NOISE_MODEL 1
 %%PageOrientation: Portrait
 /pgsave save def bop
 % 32.00 8.00 gridspace
 1.0000 inchscale
-2.6000 setlinewidth 1216 192 translate
+2.6000 setlinewidth 1376 -26 translate
 
-1.000 0.000 -224 256 analog::resistor
-1.000 0.000 -128 256 analog::isource
-1.000 0.000 -864 160 analog::resistor
-1.000 0.000 -864 96 analog::gnd
-1.000 0.000 -224 96 analog::gnd
-1.000 0.000 -128 96 analog::gnd
-1 1.000 -224 192 -224 96 2 polygon
-1 1.000 -128 192 -128 96 2 polygon
-1 1.000 -224 320 -224 416 2 polygon
-1 1.000 -128 320 -128 416 2 polygon
-(R) {/Courier cf} 2 16 0.000 1.000 -832 144 label
-(R) {/Courier cf} 2 16 0.000 1.000 -192 240 label
-(2) {Ss} {ns} (n) {ss} (V) {/Courier cf} 7 16 0.000 1.000 -800 272 label
-1 1.000 -800 320 -736 320 2 polygon
-(2) {Ss} {ns} (n) {ss} (I) {/Courier cf} 7 16 0.000 1.000 -80 240 label
-1 1.000 -80 288 -16 288 2 polygon
--1.000 0.000 -912 416 generic::circle
-1 1.000 -912 416 -864 416 -864 352 3 polygon
-1.000 0.000 -864 288 analog::acsource
-0 1.000 0 0 0 480 -320 480 -320 0 4 polygon
-0 1.000 -704 0 -704 480 -1024 480 -1024 0 4 polygon
-1.000 0.000 -80 416 generic::circle
-1 1.000 -80 416 -224 416 2 polygon
-1.000 0.000 -128 416 generic::dot
+1.000 90.000 -1008 448 analog::vsource
+1.000 0.000 -456 336 analog::isource
+1.000 180.000 -704 304 generic::arrowhead
+1.000 90.000 -896 448 analog::resistor
+1.000 180.000 -1120 448 generic::circle
+1 1.000 -704 320 -704 352 2 polygon
+1 1.000 -672 336 -704 384 -736 336 -704 288 -672 336 5 polygon
+1 1.000 -704 352 -704 368 2 polygon
+1 1.000 -1120 448 -1088 448 2 polygon
+1.000 180.000 -576 336 analog::resistor
+1 1.000 -704 400 -704 384 2 polygon
+1.000 180.000 -1120 224 generic::circle
+1 1.000 -1120 224 -704 224 2 polygon
+(+) {/Helvetica cf} 2 16 0.000 1.000 -832 416 label
+(-) {/Helvetica cf} 2 16 0.000 1.000 -832 224 label
+(1) {ss} (V) {/Courier cf} 4 16 0.000 1.000 -832 320 label
+(G) {ss} (R) {/Courier cf} 4 16 0.000 1.000 -912 480 label
+(n,eq) {ss} {ns} (2) {Ss} (V) {/Courier cf} 7 16 0.000 1.000 -1056 352 label
+1 1.000 -1088 448 -1072 448 2 polygon
+(G) {/Courier cf} 2 16 0.000 1.000 -1184 448 label
+(S) {/Courier cf} 2 16 0.000 1.000 -1184 224 label
+1.000 360.000 -304 448 generic::circle
+1.000 360.000 -304 224 generic::circle
+(D) {/Courier cf} 2 16 0.000 1.000 -256 448 label
+(S) {/Courier cf} 2 16 0.000 1.000 -256 224 label
+(+) {/Helvetica cf} 2 16 0.000 1.000 -320 416 label
+(-) {/Helvetica cf} 2 16 0.000 1.000 -320 224 label
+(OUT) {ss} (V) {/Courier cf} 4 16 0.000 1.000 -320 320 label
+(+) {/Helvetica cf} 2 16 0.000 1.000 -1120 416 label
+(-) {/Helvetica cf} 2 16 0.000 1.000 -1120 224 label
+(IN) {ss} (V) {/Courier cf} 4 16 0.000 1.000 -1120 320 label
+(1) {ss} (V) {ns} (m) {ss} (g) {/Courier cf} 8 16 0.000 1.000 -672 264 label
+1 1.000 -576 416 -576 448 2 polygon
+1 1.000 -576 256 -576 224 2 polygon
+(DS) {ss} (r) {/Courier cf} 4 16 0.000 1.000 -544 264 label
+{Ss} {ns} (n) {ss} {ns} (2) {Ss} (I) {/Courier cf} 9 16 0.000 1.000 -416 264 
+label
+1 1.000 -704 224 -320 224 2 polygon
+1 1.000 -304 448 -704 448 2 polygon
+1 1.000 -704 448 -704 416 2 polygon
+1 1.000 -704 272 -704 224 2 polygon
+1 1.000 -320 224 -304 224 2 polygon
+1 1.000 -704 416 -704 400 2 polygon
+1 1.000 -704 288 -704 272 2 polygon
+1 1.000 -576 416 -576 400 2 polygon
+1 1.000 -576 272 -576 256 2 polygon
+1 1.000 -1056 400 -960 400 2 polygon
+1 1.000 -416 312 -376 312 2 polygon
+1 1.000 -456 272 -456 224 2 polygon
+1 1.000 -456 448 -456 400 2 polygon
 pgsave restore showpage
 
 %%Trailer
